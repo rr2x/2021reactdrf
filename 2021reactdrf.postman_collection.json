@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "89110ee3-41e5-4ff1-8a5e-15bb72bb3fd2",
+		"name": "2021reactdrf",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/hello",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"test fn1\",\r\n    \"last_name\": \"test ln1\",\r\n    \"password\": \"waaaa\",\r\n    \"password_confirm\": \"waaaa\",\r\n    \"email\": \"aaaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/register",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
