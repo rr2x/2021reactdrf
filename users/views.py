@@ -1,5 +1,8 @@
+from rest_framework.views import APIView
+from users.authentication import JWTAuthentication, generate_access_token
 from rest_framework.decorators import api_view
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException, AuthenticationFailed
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from users.serializers import UserSerializer
@@ -20,7 +23,56 @@ def register(request):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+def login(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    user = User.objects.filter(email=email).first()
+
+    if user is None:
+        raise AuthenticationFailed('User not found!')
+
+    if not user.check_password(password):
+        raise AuthenticationFailed('Incorrect password')
+
+    response = Response()
+
+    token = generate_access_token(user)
+
+    response.set_cookie(key='jwt', value=token, httponly=True)
+
+    response.data = {
+        'jwt': token
+    }
+
+    return response
+
+
+@api_view(['POST'])
+def logout(_):
+    response = Response()
+    response.delete_cookie(key='jwt')
+    response.data = {
+        'message': 'success'
+    }
+    return response
+
+
+class AuthenticatedUser(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+
+        return Response({
+            'data': serializer.data
+        })
+
+
 @api_view(['GET'])
-def users(request):
+def users(_):
     users = User.objects.all()
-    return Response(users)
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)

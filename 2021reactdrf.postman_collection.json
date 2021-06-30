@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"first_name\": \"test fn1\",\r\n    \"last_name\": \"test ln1\",\r\n    \"password\": \"waaaa\",\r\n    \"password_confirm\": \"waaaa\",\r\n    \"email\": \"aaaa\"\r\n}",
+					"raw": "{\r\n    \"first_name\": \"test fn2\",\r\n    \"last_name\": \"test ln2\",\r\n    \"password\": \"waaaa2\",\r\n    \"password_confirm\": \"waaaa2\",\r\n    \"email\": \"bbbb\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,6 +43,66 @@
 					],
 					"path": [
 						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"aaaa\",\r\n    \"password\": \"waaaa1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/login",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/user",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/logout",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"logout"
 					]
 				}
 			},
