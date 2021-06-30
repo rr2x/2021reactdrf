@@ -55,7 +55,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"aaaa\",\r\n    \"password\": \"waaaa1\"\r\n}",
+					"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -103,6 +103,138 @@
 					],
 					"path": [
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/permissions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/permissions",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/roles",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/roles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"new role\",\r\n    \"permissions\": [1,2]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/roles",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/roles/:pk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/roles/4",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"roles",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/roles/:pk",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"updated_name\",\r\n    \"permissions\": [3,4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/roles/4",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"roles",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/roles/:pk",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"updated_name\",\r\n    \"permissions\": [3,4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/roles/4",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"roles",
+						"4"
 					]
 				}
 			},
