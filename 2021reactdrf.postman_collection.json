@@ -520,6 +520,95 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "/api/upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/0/Downloads/koffing-Untitled.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/upload",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/media/koffing-Untitled.png",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/media/koffing-Untitled.png",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"media",
+								"koffing-Untitled.png"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "/api/orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/orders",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/export",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/export",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"export"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

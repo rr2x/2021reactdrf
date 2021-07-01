@@ -14,6 +14,7 @@ from users.authentication import JWTAuthentication, generate_access_token
 from users.serializers import PermissionSerializer, RoleSerializer, UserSerializer
 
 from .models import User, Permission, Role
+from .permissions import ViewPermissions
 
 
 @api_view(['POST'])
@@ -94,7 +95,8 @@ class PermissionAPIView(APIView):
 
 class RoleViewSet(ViewSet):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated & ViewPermissions]
+    permission_object = 'roles'
 
     def list(self, _):
         serializer = RoleSerializer(Role.objects.all(), many=True)
@@ -141,7 +143,8 @@ class UserGenericAPIView(
         DestroyModelMixin):
 
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated & ViewPermissions]
+    permission_object = 'users'
     queryset = User.objects.all()
     serializer_class = UserSerializer
     pagination_class = CustPagination
