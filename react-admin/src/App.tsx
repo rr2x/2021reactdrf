@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import Dashboard from './secure/Dashboard';
-import Users from './secure/Users';
+
 import {BrowserRouter, Route} from 'react-router-dom';
+
 import Login from './public/Login';
 import Register from './public/Register';
 
+import Dashboard from './secure/dashboard/Dashboard';
+import Users from './secure/users/Users';
 
 function App() {
   return (
