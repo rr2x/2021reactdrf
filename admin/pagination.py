@@ -1,3 +1,4 @@
+import math
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
@@ -15,7 +16,7 @@ class CustPagination(PageNumberPagination):
         return Response({
             'data': data,
             'meta': {
-                'last_page': self.page.paginator.count,
+                'total_pages': math.ceil(int(self.page.paginator.count) / int(self.page_size)),
                 'page': int(self.request.GET.get('page', DEFAULT_PAGE)),
                 'page_size': int(self.request.GET.get('page_size', self.page_size))
             }

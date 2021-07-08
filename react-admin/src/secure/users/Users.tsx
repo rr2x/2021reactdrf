@@ -10,15 +10,45 @@ class Users extends Component {
     users: []
   }
 
+  page = 1;
+  total_pages = 0;
+
   componentDidMount = async () => {
     try {
-      const response = await axios.get('users')
+
+      const response = await axios.get(`users?page=${this.page}`)
 
       this.setState({
         users: response.data.data.data
       })
+
+      this.total_pages = response.data.data.meta.total_pages;
+
     } catch (err) {
-      console.log(err.data);
+      console.log(err.response);
+
+    }
+  }
+
+  previous = async () => {
+    if (this.page === 1) {
+      return;
+    } else {
+      if (this.page-1 >= 1) {
+        this.page--
+      }
+      await this.componentDidMount();
+    }
+  }
+
+  next = async () => {
+    if (this.page === this.total_pages) {
+      return;
+    } else {
+      if (this.page+1 <= this.total_pages) {
+        this.page++
+      }
+      await this.componentDidMount();
     }
   }
 
@@ -28,7 +58,7 @@ class Users extends Component {
 
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <div className="btn-toolbar mb-2 mb-md-0">
-            <a href="#" className="btn btn-sm btn-outline-secondary">Add</a>
+            <Link to={'/users/create'} className="btn btn-sm btn-outline-secondary">Add</Link>
           </div>
         </div>
 
@@ -66,6 +96,18 @@ class Users extends Component {
             </tbody>
           </table>
         </div>
+
+        <nav>
+          <ul className="pagination">
+            <li className="page-item">
+              <a href="#" className="page-link" onClick={this.previous}>Previous</a>
+            </li>
+            <li className="page-item">
+              <a href="#" className="page-link" onClick={this.next}>Next</a>
+            </li>
+          </ul>
+        </nav>
+
       </Wrapper>
     )
   }
