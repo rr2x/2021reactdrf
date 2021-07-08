@@ -9,6 +9,7 @@ import Register from './public/Register';
 import Dashboard from './secure/dashboard/Dashboard';
 import Users from './secure/users/Users';
 import RedirectToDashboard from './secure/RedirectToDashboard';
+import UserCreate from './secure/users/UserCreate';
 
 function App() {
   return (
@@ -16,9 +17,12 @@ function App() {
       <BrowserRouter>
         <Route path={'/'} exact component={RedirectToDashboard} />
         <Route path={'/dashboard'} exact component={Dashboard} />
-        <Route path={'/users'} component={Users} />
         <Route path={'/login'} component={Login} />
         <Route path={'/register'} component={Register} />
+        <Route path={'/users'} exact component={Users} />
+        <Route path={'/users/create'} component={UserCreate} />
+
+
       </BrowserRouter>
     </div>
   );

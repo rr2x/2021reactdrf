@@ -16,7 +16,7 @@ class CustPagination(PageNumberPagination):
         return Response({
             'data': data,
             'meta': {
-                'total_pages': math.ceil(int(self.page.paginator.count) / int(self.page_size)),
+                'last_page': math.ceil(int(self.page.paginator.count) / int(self.page_size)),
                 'page': int(self.request.GET.get('page', DEFAULT_PAGE)),
                 'page_size': int(self.request.GET.get('page_size', self.page_size))
             }

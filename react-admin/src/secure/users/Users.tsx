@@ -11,7 +11,7 @@ class Users extends Component {
   }
 
   page = 1;
-  total_pages = 0;
+  last_page = 0;
 
   componentDidMount = async () => {
     try {
@@ -22,11 +22,11 @@ class Users extends Component {
         users: response.data.data.data
       })
 
-      this.total_pages = response.data.data.meta.total_pages;
+      this.last_page = response.data.data.meta.last_page;
 
     } catch (err) {
       console.log(err.response);
-
+      // todo: redirect to login if forbidden
     }
   }
 
@@ -42,13 +42,28 @@ class Users extends Component {
   }
 
   next = async () => {
-    if (this.page === this.total_pages) {
+    if (this.page === this.last_page) {
       return;
     } else {
-      if (this.page+1 <= this.total_pages) {
+      if (this.page+1 <= this.last_page) {
         this.page++
       }
       await this.componentDidMount();
+    }
+  }
+
+  delete = async (id: number) => {
+
+    if (window.confirm('Are you sure you want to delete this record?')) {
+      try {
+        await axios.delete(`users/${id}`);
+
+        this.setState({
+          users: this.state.users.filter((u: User) => u.id !== id)
+        })
+      } catch (err) {
+        console.log(err.response);
+      }
     }
   }
 
@@ -86,7 +101,8 @@ class Users extends Component {
                         <td>
                           <div className="btn-group mr-2">
                             <a href="#" className="btn btn-sm btn-outline-secondary">Edit</a>
-                            <a href="#" className="btn btn-sm btn-outline-secondary">Delete</a>
+                            <a href="#" className="btn btn-sm btn-outline-secondary"
+                              onClick={() => this.delete(user.id)}>Delete</a>
                           </div>
                         </td>
                       </tr>
