@@ -66,6 +66,16 @@ class UserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         password = validated_data.pop('password', None)
 
+        instance.first_name = validated_data.get(
+            'first_name', instance.first_name)
+
+        instance.last_name = validated_data.get(
+            'last_name', instance.last_name)
+
+        instance.email = validated_data.get('email', instance.email)
+
+        instance.role = validated_data.get('role', instance.role)
+
         if password is not None:
             instance.set_password(password)
 

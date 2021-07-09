@@ -170,7 +170,7 @@ class UserGenericAPIView(
 
     def put(self, request, pk=None):
 
-        if request.data['role_id']:
+        if 'role_id' in request.data and request.data['role_id']:
             request.data.update({
                 'role': request.data['role_id']
             })
