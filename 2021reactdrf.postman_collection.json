@@ -37,7 +37,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"test fn2\",\r\n    \"last_name\": \"test ln2\",\r\n    \"password\": \"waaaa2\",\r\n    \"password_confirm\": \"waaaa2\",\r\n    \"email\": \"bbbb\"\r\n}",
+							"raw": "{\r\n    \"first_name\": \"test fn2\",\r\n    \"last_name\": \"test ln2\",\r\n    \"password\": \"waaaa2\",\r\n    \"password_confirm\": \"waaaa2\",\r\n    \"email\": \"bbbbb\",\r\n    \"role\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -63,7 +63,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"44444\"\r\n}",
+							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"4444\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -269,12 +269,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/users",
+							"raw": "{{URLBASE}}/users?page=1",
 							"host": [
 								"{{URLBASE}}"
 							],
 							"path": [
 								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -362,13 +368,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URLBASE}}/users/5",
+							"raw": "{{URLBASE}}/users/1",
 							"host": [
 								"{{URLBASE}}"
 							],
 							"path": [
 								"users",
-								"5"
+								"1"
 							]
 						}
 					},
@@ -605,6 +611,23 @@
 							],
 							"path": [
 								"export"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/chart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/chart",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"chart"
 							]
 						}
 					},
