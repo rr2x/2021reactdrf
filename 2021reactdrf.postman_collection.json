@@ -481,7 +481,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"prod\",\r\n    \"description\": \"desc\",\r\n    \"image\": \"img\",\r\n    \"price\": 20\r\n}",
+							"raw": "{\r\n    \"title\": \"product 17\",\r\n    \"description\": \"description 17\",\r\n    \"image\": \"image\",\r\n    \"price\": 1312\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

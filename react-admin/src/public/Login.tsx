@@ -14,14 +14,13 @@ class Login extends Component {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+      await axios.post(
         'login',
         {
           email: this.email,
           password: this.password
         }
       )
-      console.log(response);
 
       this.setState({redirect:true})
 
