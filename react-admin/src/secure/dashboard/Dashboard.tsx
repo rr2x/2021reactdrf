@@ -6,38 +6,42 @@ import axios from 'axios'
 class Dashboard extends Component {
 
   componentDidMount = async () => {
-    let chart = c3.generate({
-      bindto: '#chart',
-      data: {
-        x: 'x',
-        columns: [
-          ['x'],
-          ['Sales'],
-        ],
-        types: {
-          Sales: 'bar'
-        }
-      },
-      axis: {
-        x: {
-          type: 'timeseries',
-          tick: {
-            format: '%Y-%m-%d'
+    try {
+      let chart = c3.generate({
+        bindto: '#chart',
+        data: {
+          x: 'x',
+          columns: [
+            ['x'],
+            ['Sales'],
+          ],
+          types: {
+            Sales: 'bar'
+          }
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%Y-%m-%d'
+            }
           }
         }
-      }
-    })
+      })
 
-    const response = await axios.get('chart')
+      const response = await axios.get('chart')
 
-    const records: {date: string, sum: number}[] = response.data.data
+      const records: {date: string, sum: number}[] = response.data.data
 
-    chart.load({
-      columns: [
-        ['x',...records.map(r=>r.date)],
-        ['Sales',...records.map(s=>s.sum)],
-      ]
-    })
+      chart.load({
+        columns: [
+          ['x',...records.map(r=>r.date)],
+          ['Sales',...records.map(s=>s.sum)],
+        ]
+      })
+    } catch (err) {
+      console.log (err.response)
+    }
   }
 
   render() {

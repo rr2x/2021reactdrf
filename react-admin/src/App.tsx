@@ -19,6 +19,7 @@ import ProductCreate from './secure/products/ProductCreate';
 import ProductEdit from './secure/products/ProductEdit';
 import Orders from './secure/orders/Orders';
 import OrderItems from './secure/orders/OrderItems';
+import Profile from './secure/profile/Profile';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path={'/products/:id/edit'} exact component={ProductEdit} />
         <Route path={'/orders'} exact component={Orders} />
         <Route path={'/orders/:id'} exact component={OrderItems} />
+        <Route path={'/profile'} exact component={Profile} />
       </BrowserRouter>
     </div>
   );
