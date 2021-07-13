@@ -37,9 +37,9 @@ class Nav extends Component<{user: User}> {
     }
     return (
       <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/#">Company name</a>
+        <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>
         <ul className="my-2 my-md-8 mr-md-3">
-          <Link to={'/profile'} className='p-2 text-white'>{this.props.user.first_name} {this.props.user.last_name}</Link>
+          <Link to={'/profile'} className='p-2 text-white'>{this.props.user.name}</Link>
           <a className="p-2 text-white" href="#" onClick={this.handleClick}>Sign out</a>
         </ul>
       </nav>

@@ -5,8 +5,10 @@ import axios from 'axios';
 import { Product } from '../../classes/product';
 import Paginator from '../components/Paginator';
 import Deleter from '../components/Deleter';
+import { User } from '../../classes/user';
+import { connect } from 'react-redux';
 
-export default class Products extends Component {
+class Products extends Component<{user: User}> {
 
   state = {
     products: []
@@ -43,15 +45,32 @@ export default class Products extends Component {
     await this.componentDidMount()
   }
 
+  actions = (id: number) => {
+    if (this.props.user.canEdit('products')) {
+      return (
+        <div className="btn-group mr-2">
+          <Link to={`/products/${id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
+          <Deleter id={id} endpoint={"products"} handleDelete={this.handleDelete} />
+        </div>
+      )
+    }
+  }
+
   render() {
-    return (
-      <Wrapper>
+    let addButton = null
+    if (this.props.user.canEdit('users')) {
+      addButton = (
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <div className="btn-toolbar mb-2 mb-md-0">
             <Link to={'/products/create'} className="btn btn-sm btn-outline-secondary">Add</Link>
           </div>
         </div>
+      )
+    }
 
+    return (
+      <Wrapper>
+        {addButton}
         <div className="table-responsive">
           <table className="table table-striped table-sm">
             <thead>
@@ -76,10 +95,7 @@ export default class Products extends Component {
                         <td>{p.description}</td>
                         <td>{p.price}</td>
                         <td>
-                          <div className="btn-group mr-2">
-                            <Link to={`/products/${p.id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
-                            <Deleter id={p.id} endpoint={"products"} handleDelete={this.handleDelete} />
-                          </div>
+                            {this.actions(p.id)}
                         </td>
                       </tr>
                     )
@@ -95,3 +111,7 @@ export default class Products extends Component {
     )
   }
 }
+
+export default connect(
+  (state: {user: User}) => ({user: state.user})
+)(Products)

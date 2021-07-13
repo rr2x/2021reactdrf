@@ -25,7 +25,7 @@ class Login extends Component {
       this.setState({redirect:true})
 
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err.response);
     }
 
   }

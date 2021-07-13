@@ -43,7 +43,15 @@ class Profile extends Component<any> {
       console.log('user updated')
 
       const user:User = response.data
-      this.props.setUser(user)
+
+      this.props.setUser(new User(
+        user.id,
+        user.first_name,
+        user.last_name,
+        user.email,
+        user.role,
+        user.permissions
+      ))
 
     } catch (err) {
       console.log(err.response)
